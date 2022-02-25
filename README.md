@@ -112,6 +112,15 @@ validation failure.
 
 If you use a [.terraform-version](#terraform-version-file) file, `tfenv install` (no argument) will install the version written in it.
 
+#### M1 Macs with old Terraform versions
+
+
+
+You can do this by setting the 
+
+```bash
+
+
 #### min-required
 
 Please note that we don't do semantic version range parsing but use first ever found version as the candidate for minimally required one. It is up to the user to keep the definition reasonable. I.e.
@@ -138,10 +147,12 @@ terraform {
 
 String (Default: amd64)
 
-Specify architecture. Architecture other than the default amd64 can be specified with the `TFENV_ARCH` environment variable
+Specify architecture. Architecture other than the default amd64 can be specified with the `TFENV_ARCH` environment variable.
+
+A common use case is if you have a M1 or newer equipped Mac older Terraform versions do not have pre-built darwin arm64 binaries so you will get an error trying to install them. Specifying this variable to use amd64 allows you to download and run Terraform via Rosetta 2.
 
 ```console
-$ TFENV_ARCH=arm tfenv install 0.7.9
+$ TFENV_ARCH=amd64 tfenv install 0.14.11
 ```
 
 ##### `TFENV_AUTO_INSTALL`
